@@ -9,7 +9,7 @@ node_modules
 .pnp.js
 
 # debug releases
-/dist
+dist/
 
 # misc
 .DS_Store

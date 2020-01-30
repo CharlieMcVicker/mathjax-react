@@ -26,6 +26,12 @@ class Example extends React.Component {
 }
 ```
 
+## Manifest
+### src/
+Library Source
+### typescript-examples
+Examples using `react-mathjax` and `TypeScript`.
+
 ## License
 
 MIT © [charliemcvicker](https://github.com/charliemcvicker)

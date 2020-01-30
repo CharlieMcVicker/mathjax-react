@@ -1,0 +1,1 @@
+export { MathComponent } from './MathComponent';

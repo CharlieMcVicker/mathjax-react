@@ -1,12 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import ExampleComponent from 'react-mathjax'
+import { MathComponent } from 'react-mathjax';
 
 export default class App extends Component {
   render () {
+    const tex = String.raw`\int_{-\infty}^{\infty}`;
     return (
       <div>
-        <ExampleComponent text='Modern React component module' />
+        <MathComponent tex={tex} />
       </div>
     )
   }

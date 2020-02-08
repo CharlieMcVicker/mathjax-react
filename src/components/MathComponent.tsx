@@ -15,11 +15,16 @@ interface MathMLProps {
 type SourceProps = XOR<MathMLProps, TeXProps>;
 
 // TODO import config props from mathjax-full
-type ConfigProps = {};
+const defaultProps = {
+  display: true
+};
 
-export type MathComponentProps = SourceProps & ConfigProps;
+type DefaultProps = typeof defaultProps;
+
+export type MathComponentProps = SourceProps & Partial<DefaultProps>;
 
 export class MathComponent extends React.Component<MathComponentProps> {
+  static defaultProps: DefaultProps = defaultProps;
   private rootRef = React.createRef<HTMLDivElement>();
   componentDidMount() {
     this.setState({});
@@ -46,12 +51,12 @@ export class MathComponent extends React.Component<MathComponentProps> {
     let src = this.parseProps();
     let renderedSVG = "";
     if (node) {
-      renderedSVG = convert(src, node, true);
+      renderedSVG = convert(src, node, this.props.display!);
     } else {
       console.log('Didn\'t work!', this.rootRef);
     }
     return (
-      <div ref={this.rootRef}>
+      <div ref={this.rootRef} style={{display: this.props.display!? 'block':'inline-block'}}>
         <div dangerouslySetInnerHTML={{__html: renderedSVG}}/>
       </div>
     )

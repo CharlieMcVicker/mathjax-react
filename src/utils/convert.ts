@@ -50,3 +50,27 @@ export function convert(srcSpec: SourceSpecification, node: HTMLElement, display
 	updateCSS('MATHJAX-SVG-STYLESHEET', svg.cssStyles.cssText);
 	return outerHTML;
 }
+
+export async function convertPromise(srcSpec: SourceSpecification, node: HTMLElement, display: boolean): Promise<string> {
+  const { src, lang } = srcSpec;
+  let html = tex_html;
+  if(lang == 'MathML') html = mathml_html;
+	const math: string = src.trim();
+	const metrics = svg.getMetricsFor(node, display);
+  const res: Promise<string | void> = mathjax.handleRetriesFor(function () {
+    const dom = html.convert(math, {
+      display,
+	    ...metrics
+    }); 
+    return dom;
+  }).then(dom => {
+    // do stuff with dom
+	  html.updateDocument();
+	  updateCSS('MATHJAX-SVG-STYLESHEET', svg.cssStyles.cssText);
+    return adaptor.outerHTML(dom);
+  }).catch(err => {
+    // handle error
+    console.log('error rendering!', err);
+  });
+  return res.then(v => v ? v : "");
+}

@@ -1,12 +1,19 @@
 import React from 'react';
 import { MathComponent } from 'react-mathjax';
 
+import Example from './Example';
+
 type State = {
   text: string,
   lang: string
 }
 
 export default class LiveTyping extends React.Component<{}, State> {
+  static exampleConfig = {
+    title: "Live Typing",
+    caption: `Type in the text box below and see the rendered result.`,
+    relSrc: "examples/LiveTyping.tsx"
+  };
   constructor(props: any) {
     super(props);
     this.state = {
@@ -14,7 +21,11 @@ export default class LiveTyping extends React.Component<{}, State> {
       lang: 'tex'
     }
   }
-  handleChange = (e: React.FormEvent<HTMLInputElement>) =>{ 
+  handleLangChange = (e: React.FormEvent<HTMLSelectElement>) =>{ 
+    e.persist()
+    this.setState({lang: e.currentTarget.value as string});
+  }
+  handleSrcChange = (e: React.FormEvent<HTMLInputElement>) =>{ 
     e.persist()
     this.setState({text: e.currentTarget.value as string});
   }
@@ -31,16 +42,14 @@ export default class LiveTyping extends React.Component<{}, State> {
       mcProps = { mathml: text };
     }
     return (
-      <div className="example">
-        <h2 className="title">Live Typing</h2>
-        <div className="caption">
-          <p>Type in the text box below and see the rendered result.</p>
-        </div>
-        <div className="result">
-          <input style={inputStyles} type="text" onChange={this.handleChange} />
-          <MathComponent {...mcProps} />
-        </div>
-      </div>
+      <Example {...LiveTyping.exampleConfig}>
+        <select onChange={this.handleLangChange}>
+          <option>tex</option>
+          <option>mathml</option>
+        </select>
+        <input style={inputStyles} type="text" onChange={this.handleSrcChange} />
+        <MathComponent {...mcProps} />
+      </Example>
     );
   }
 }

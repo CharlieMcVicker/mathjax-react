@@ -1,9 +1,6 @@
 import React from 'react';
 import './App.css';
-import BasicTypesetting from './examples/BasicTypesetting';
-import ListOfEquations from './examples/ListOfEquations';
-import Counter from './examples/Counter';
-import LiveTyping from './examples/LiveTyping';
+import examples from './examples';
 
 export default class App extends React.Component {
   render(){
@@ -13,10 +10,7 @@ export default class App extends React.Component {
           <h1>Examples for react-mathjax</h1>
         </header>
         <div className="exampleList">
-          <BasicTypesetting />
-          <ListOfEquations />
-          <LiveTyping />
-          <Counter />
+          { examples }
         </div>
       </div>
     );

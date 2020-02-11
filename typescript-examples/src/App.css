@@ -13,37 +13,3 @@ header {
   text-align: center;
   border-bottom: 1px solid rgba(0,0,0,0.125);
 }
-
-.example {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-areas: 'title' 'caption' 'result';
-  border: 1px solid #eef;
-  padding: 10px;
-}
-
-.example .title {
-  grid-area: title;
-  margin: 10px 0px;
-  padding: 10px;
-  border-bottom: 1px solid rgba(0,0,0,0.125);
-}
-
-.example .caption {
-  padding: 10px;
-}
-
-.example .code {
-  background: #333333;
-  color: white;
-  padding: 10px;
-  grid-area: code;
-  overflow: scroll;
-  border: 1px solid rgba(0,0,0,0.125);
-}
-
-.example .result {
-  padding: 10px;
-  grid-area: result;
-  border: 1px solid rgba(0,0,0,0.125);
-}

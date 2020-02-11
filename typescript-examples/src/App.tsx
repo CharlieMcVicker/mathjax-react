@@ -3,6 +3,7 @@ import './App.css';
 import BasicTypesetting from './examples/BasicTypesetting';
 import ListOfEquations from './examples/ListOfEquations';
 import Counter from './examples/Counter';
+import LiveTyping from './examples/LiveTyping';
 
 export default class App extends React.Component {
   render(){
@@ -14,6 +15,7 @@ export default class App extends React.Component {
         <div className="exampleList">
           <BasicTypesetting />
           <ListOfEquations />
+          <LiveTyping />
           <Counter />
         </div>
       </div>

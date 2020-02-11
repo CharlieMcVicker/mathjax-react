@@ -22,17 +22,22 @@ const defaultProps = {
 type DefaultProps = typeof defaultProps;
 
 type State = {
-  renderPromise: null | Promise<void>,
-  renderResult: string
-  renderSrc: SourceSpecification,
-  src: SourceSpecification
+  renderPromise: null | Promise<void>, // promise that will set renderResult in state on return
+  renderResult: string, // the result of the most recent RESOLVED render
+  renderSrc: SourceSpecification, // the most recent src spec sent to rendering
+  src: SourceSpecification // the current source spec
 };
 
+// Sets up default props nicely
 export type MathComponentProps = SourceProps & Partial<DefaultProps>;
 
 export class MathComponent extends React.Component<MathComponentProps, State> {
-  static defaultProps: DefaultProps = defaultProps;
-  private rootRef = React.createRef<HTMLDivElement>();
+  static defaultProps: DefaultProps = defaultProps; // bind default props
+  private rootDivRef = React.createRef<HTMLDivElement>(); // setup root references
+  private rootSpanRef = React.createRef<HTMLSpanElement>();
+  getRootRef() {
+    return this.props.display ? this.rootDivRef : this.rootSpanRef;
+  }
   state: State = {
     renderSrc: { src: "", lang: "TeX" },
     renderPromise: null,
@@ -70,7 +75,7 @@ export class MathComponent extends React.Component<MathComponentProps, State> {
     this._sendRender();
   }
   _sendRender() {
-    const node = this.rootRef.current;
+    const node = this.getRootRef().current;
     const { src, renderSrc } = this.state;
     if (node && !(src.src == renderSrc.src && src.lang == renderSrc.lang)) {
       const prom = convertPromise(
@@ -99,10 +104,12 @@ export class MathComponent extends React.Component<MathComponentProps, State> {
       console.log('Didn\'t work!', this.rootRef);
     }
     */
-    return (
-      <div ref={this.rootRef} style={{display: this.props.display!? 'block':'inline-block'}}>
-        <div dangerouslySetInnerHTML={{__html: renderedSVG}}/>
+    return this.props.display ? (
+      <div ref={this.rootDivRef} dangerouslySetInnerHTML={{__html: renderedSVG}}>
       </div>
+    ) : (
+      <span ref={this.rootSpanRef} dangerouslySetInnerHTML={{__html: renderedSVG}}>
+      </span>
     )
   }
 }

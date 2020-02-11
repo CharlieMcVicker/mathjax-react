@@ -14,9 +14,7 @@ export default class BasicTypesetting extends React.Component {
     return (
       <Example {...BasicTypesetting.exampleConfig}>
         <MathComponent tex={example} display={true} />
-        <p style={{'textAlign': 'center'}}> It is hard to compute
-          &nbsp;<MathComponent tex={example} display={false} />&nbsp;
-          if you don't know much math.
+        <p style={{'textAlign': 'center'}}> It is hard to compute <MathComponent tex={example} display={false} /> if you don't know much math.
         </p>
       </Example>
     );

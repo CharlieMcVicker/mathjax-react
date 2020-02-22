@@ -51,13 +51,20 @@ export function convert(srcSpec: SourceSpecification, node: HTMLElement, display
 	return outerHTML;
 }
 
-export async function convertPromise(srcSpec: SourceSpecification, node: HTMLElement, display: boolean): Promise<string> {
+class CancelationException {}
+
+export function convertPromise(srcSpec: SourceSpecification, node: HTMLElement, display: boolean): { promise: Promise<string>, cancel: () => void } {
   const { src, lang } = srcSpec;
   let html = tex_html;
   if(lang == 'MathML') html = mathml_html;
 	const math: string = src.trim();
 	const metrics = svg.getMetricsFor(node, display);
+  let canceled = false;
+  const cancel = () => canceled = true;
   const res: Promise<string | void> = mathjax.handleRetriesFor(function () {
+    if (canceled) {
+      throw new CancelationException();
+    }
     const dom = html.convert(math, {
       display,
 	    ...metrics
@@ -69,8 +76,11 @@ export async function convertPromise(srcSpec: SourceSpecification, node: HTMLEle
 	  updateCSS('MATHJAX-SVG-STYLESHEET', svg.cssStyles.cssText);
     return adaptor.outerHTML(dom);
   }).catch(err => {
-    // handle error
-    console.log('error rendering!', err);
+    if (!(err instanceof CancelationException)) {
+      throw err;
+    } else {
+      console.log('cancelled render!');
+    }
   });
-  return res.then(v => v ? v : "");
+  return { promise: res.then(v => v ? v : "").catch(() => ''), cancel };
 }

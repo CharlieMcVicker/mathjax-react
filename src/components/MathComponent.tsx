@@ -25,7 +25,8 @@ type State = {
   renderPromise: null | Promise<void>, // promise that will set renderResult in state on return
   renderResult: string, // the result of the most recent RESOLVED render
   renderSrc: SourceSpecification, // the most recent src spec sent to rendering
-  src: SourceSpecification // the current source spec
+  src: SourceSpecification, // the current source spec
+  cancel: () => void // cancel the current render
 };
 
 // Sets up default props nicely
@@ -45,7 +46,8 @@ export class MathComponent extends React.Component<MathComponentProps, State> {
     src: {
       src: "",
       lang: "TeX"
-    }
+    },
+    cancel: () => null
   };
   static parseProps(props: MathComponentProps): SourceSpecification {
     // if the prop is present, then it is the ONLY source specified
@@ -78,19 +80,20 @@ export class MathComponent extends React.Component<MathComponentProps, State> {
     const node = this.getRootRef().current;
     const { src, renderSrc } = this.state;
     if (node && !(src.src == renderSrc.src && src.lang == renderSrc.lang)) {
-      const prom = convertPromise(
+      this.state.cancel();
+      const { promise, cancel } = convertPromise(
         src,
         node,
-        this.props.display!)
-        .then(htmlStr => {
+        this.props.display!);
+      const renderPromise = promise.then(htmlStr => {
           // check if promise is correct (ie. most recent)
-          if (prom == this.state.renderPromise) {
+          if (renderPromise == this.state.renderPromise) {
             this.setState({ renderResult: htmlStr });
           } else {
             console.log('promise expired...');
           }
         });
-      this.setState({ renderPromise: prom, renderSrc: src });
+      this.setState({ renderPromise, renderSrc: src, cancel });
     }
   }
   render() {

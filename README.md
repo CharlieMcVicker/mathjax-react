@@ -2,8 +2,7 @@
 
 > React Component Library for MathJax
 
-[![NPM](https://img.shields.io/npm/v/react-mathjax.svg)](https://www.npmjs.com/package/react-mathjax) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-
+[![NPM](https://img.shields.io/npm/v/react-mathjax.svg)](https://www.npmjs.com/package/react-mathjax) 
 ## Install
 
 Install the react-mathjax package:
@@ -16,7 +15,7 @@ npm install --save mathjax-full
 ```
 ## Usage
 
-Take a look at the [typescript-examples](./typescript-examples)
+Take a look at the [typescript-examples](./typescript-examples) on our [GitHub Pages](https://charliemcvicker.github.io/react-mathjax/)
 
 ```tsx
 import * as React from 'react'
@@ -44,12 +43,12 @@ npx rollup -c
 ```
 Run npm link in the main directory to create a global symlink:
 ```bash
-npm link
+yarn link
 ```
 Run install and npm link in the `typescript-examples` directory to connect the library to the examples.
 ```bash
 cd typescript-examples/
-npm link react-mathjax
+yarn link react-mathjax
 yarn
 ```
 ### Usage

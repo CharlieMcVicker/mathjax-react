@@ -57,7 +57,7 @@ export default class LiveTyping extends React.Component<{}, State> {
           <option>mathml</option>
         </select>
         <input style={inputStyles} type="text" onChange={this.handleSrcChange} />
-        <p style={{textAlign: 'center'}}>{reason == '' ? 'No Errors' : reason}</p>
+        <p style={{textAlign: 'center'}}>{reason === '' ? 'No Errors' : reason}</p>
         <MathComponent {...mcProps} onError={(err) => this.onError(err)} onSuccess={() => this.onSuccess()}/>
       </Example>
     );

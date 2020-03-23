@@ -22,8 +22,14 @@
     "deploy": "gh-pages -d example/build"
   },
   "dependencies": {
+    "acorn": "^5.7.4",
+    "js-yaml": "^3.13.1",
     "mathjax-full": "^3.0.0",
-    "ts-xor": "^1.0.8"
+    "mem": "^4.0.0",
+    "minimist": "^1.2.2",
+    "serialize-javascript": "^2.1.1",
+    "ts-xor": "^1.0.8",
+    "webpack-dev-server": "^3.1.11"
   },
   "peerDependencies": {
     "mathjax-full": "3.0.0",

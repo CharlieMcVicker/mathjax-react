@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/react-mathjax/static/css/main.55917eff.chunk.css",
-    "main.js": "/react-mathjax/static/js/main.d518ce27.chunk.js",
-    "main.js.map": "/react-mathjax/static/js/main.d518ce27.chunk.js.map",
+    "main.js": "/react-mathjax/static/js/main.b67e1da9.chunk.js",
+    "main.js.map": "/react-mathjax/static/js/main.b67e1da9.chunk.js.map",
     "runtime-main.js": "/react-mathjax/static/js/runtime-main.ea79dd89.js",
     "runtime-main.js.map": "/react-mathjax/static/js/runtime-main.ea79dd89.js.map",
-    "static/js/2.c1d530f4.chunk.js": "/react-mathjax/static/js/2.c1d530f4.chunk.js",
-    "static/js/2.c1d530f4.chunk.js.map": "/react-mathjax/static/js/2.c1d530f4.chunk.js.map",
+    "static/js/2.33740a46.chunk.js": "/react-mathjax/static/js/2.33740a46.chunk.js",
+    "static/js/2.33740a46.chunk.js.map": "/react-mathjax/static/js/2.33740a46.chunk.js.map",
     "index.html": "/react-mathjax/index.html",
-    "precache-manifest.6739784dbf5f5d99e0addf7918f1762b.js": "/react-mathjax/precache-manifest.6739784dbf5f5d99e0addf7918f1762b.js",
+    "precache-manifest.7ad85484fbd76c093d4acdf0498086d5.js": "/react-mathjax/precache-manifest.7ad85484fbd76c093d4acdf0498086d5.js",
     "service-worker.js": "/react-mathjax/service-worker.js",
     "static/css/main.55917eff.chunk.css.map": "/react-mathjax/static/css/main.55917eff.chunk.css.map",
-    "static/js/2.c1d530f4.chunk.js.LICENSE": "/react-mathjax/static/js/2.c1d530f4.chunk.js.LICENSE"
+    "static/js/2.33740a46.chunk.js.LICENSE": "/react-mathjax/static/js/2.33740a46.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.ea79dd89.js",
-    "static/js/2.c1d530f4.chunk.js",
+    "static/js/2.33740a46.chunk.js",
     "static/css/main.55917eff.chunk.css",
-    "static/js/main.d518ce27.chunk.js"
+    "static/js/main.b67e1da9.chunk.js"
   ]
 }

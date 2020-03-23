@@ -12,6 +12,9 @@ type State = {
 }
 
 export default class Example extends React.Component<Props, State> {
+  state = {
+    absSrc: ''
+  }
   static getDerivedStateFromProps(props: Props, state: State): State {
     const absSrc = 'https://github.com/charliemcvicker/react-mathjax/blob/master/typescript-examples/src/'+props.relSrc;
     return {

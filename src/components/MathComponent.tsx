@@ -16,7 +16,9 @@ type SourceProps = XOR<MathMLProps, TeXProps>;
 
 // TODO import config props from mathjax-full
 const defaultProps = {
-  display: true
+  display: true,
+  onError: null as (((error: string) => void) | null),
+  onSuccess: null as ((() => void) | null)
 };
 
 type DefaultProps = typeof defaultProps;
@@ -85,7 +87,7 @@ export class MathComponent extends React.Component<MathComponentProps, State> {
         src,
         node,
         this.props.display!);
-      const renderPromise = promise.then(htmlStr => {
+      let renderPromise = promise.then(htmlStr => {
           // check if promise is correct (ie. most recent)
           if (renderPromise == this.state.renderPromise) {
             this.setState({ renderResult: htmlStr });
@@ -93,6 +95,12 @@ export class MathComponent extends React.Component<MathComponentProps, State> {
             console.log('promise expired...');
           }
         });
+      if (this.props.onSuccess) {
+        renderPromise = renderPromise.then(this.props.onSuccess);
+      }
+      if (this.props.onError) {
+        renderPromise = renderPromise.catch(this.props.onError);
+      }
       this.setState({ renderPromise, renderSrc: src, cancel });
     }
   }

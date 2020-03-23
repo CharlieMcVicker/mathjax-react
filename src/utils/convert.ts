@@ -5,6 +5,7 @@ import { SVG } from 'mathjax-full/js/output/svg';
 // const { liteAdaptor } = require('mathjax-full/js/adaptors/liteAdaptor.js');
 import { browserAdaptor } from 'mathjax-full/js/adaptors/browserAdaptor';
 import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html';
+import { STATE } from 'mathjax-full/js/core/MathItem';
 
 // TODO import from mathjax-full
 export type SourceSpecification = {
@@ -20,8 +21,30 @@ RegisterHTMLHandler(adaptor);
 const tex = new TeX({packages: ['base', 'ams']});
 const mathml = new MathML({});
 const svg = new SVG({fontCache: 'none'});
-const tex_html = mathjax.document('', {InputJax: tex, OutputJax: svg});
-const mathml_html = mathjax.document('', {InputJax: mathml, OutputJax: svg});
+const markErrors = [STATE.TYPESET + 1, null, onError];
+const tex_html = mathjax.document('', {
+  InputJax: tex,
+  OutputJax: svg,
+  renderActions: {
+    markErrors,
+  }
+});
+const mathml_html = mathjax.document('', {
+  InputJax: mathml,
+  OutputJax: svg,
+  renderActions: {
+    markErrors,
+  }
+});
+
+function onError(math: any) {
+  const {root, typesetRoot} = math;
+  if (root.toString().substr(0,14) === 'math([merror([') {
+    const merror = root.childNodes[0].childNodes[0];
+    const text = merror.attributes.get('data-mjx-error') || merror.childNodes[0].childNodes[0].getText();
+    adaptor.setAttribute(typesetRoot, 'data-mjx-error', text);
+  }
+}
 
 function updateCSS(nodeID: string, text: string) {
   let styleNode = document.getElementById(nodeID);
@@ -55,10 +78,11 @@ class CancelationException {}
 
 export function convertPromise(srcSpec: SourceSpecification, node: HTMLElement, display: boolean): { promise: Promise<string>, cancel: () => void } {
   const { src, lang } = srcSpec;
+  if (!node) throw new Error();
   let html = tex_html;
   if(lang == 'MathML') html = mathml_html;
   const math: string = src.trim();
-  const metrics = svg.getMetricsFor(node, display);
+  // const metrics = svg.getMetricsFor(node, display);
   let canceled = false;
   const cancel = () => canceled = true;
   const res: Promise<string | void> = mathjax.handleRetriesFor(function () {
@@ -67,13 +91,18 @@ export function convertPromise(srcSpec: SourceSpecification, node: HTMLElement, 
     }
     const dom = html.convert(math, {
       display,
-      ...metrics
+      // ...metrics
     }); 
     return dom;
   }).then(dom => {
     // do stuff with dom
     html.updateDocument();
     updateCSS('MATHJAX-SVG-STYLESHEET', svg.cssStyles.cssText);
+    let err = adaptor.getAttribute(dom, 'data-mjx-error');
+    console.log('Error:', err)
+    if (err){
+      throw err;
+    }
     return adaptor.outerHTML(dom);
   }).catch(err => {
     if (!(err instanceof CancelationException)) {
@@ -82,5 +111,5 @@ export function convertPromise(srcSpec: SourceSpecification, node: HTMLElement, 
       console.log('cancelled render!');
     }
   });
-  return { promise: res.then(v => v ? v : "").catch(() => ''), cancel };
+  return { promise: res.then(v => v ? v : ""), cancel };
 }

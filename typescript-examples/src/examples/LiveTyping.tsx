@@ -5,7 +5,8 @@ import Example from './Example';
 
 type State = {
   text: string,
-  lang: string
+  lang: string,
+  reason: string
 }
 
 export default class LiveTyping extends React.Component<{}, State> {
@@ -18,7 +19,8 @@ export default class LiveTyping extends React.Component<{}, State> {
     super(props);
     this.state = {
       text: ' ',
-      lang: 'tex'
+      lang: 'tex',
+      reason: ''
     }
   }
   handleLangChange = (e: React.FormEvent<HTMLSelectElement>) =>{ 
@@ -29,8 +31,15 @@ export default class LiveTyping extends React.Component<{}, State> {
     e.persist()
     this.setState({text: e.currentTarget.value as string});
   }
+  onError(reason: string) {
+    console.log(reason);
+    this.setState({ reason });
+  }
+  onSuccess() {
+    this.setState({ reason: '' });
+  }
   render(){
-    let { text, lang } = this.state;
+    let { text, lang, reason } = this.state;
 
     if (lang !== 'tex' && lang !== 'mathml') {
       lang = 'tex';
@@ -48,7 +57,8 @@ export default class LiveTyping extends React.Component<{}, State> {
           <option>mathml</option>
         </select>
         <input style={inputStyles} type="text" onChange={this.handleSrcChange} />
-        <MathComponent {...mcProps} />
+        <p style={{textAlign: 'center'}}>{reason == '' ? 'No Errors' : reason}</p>
+        <MathComponent {...mcProps} onError={(err) => this.onError(err)} onSuccess={() => this.onSuccess()}/>
       </Example>
     );
   }

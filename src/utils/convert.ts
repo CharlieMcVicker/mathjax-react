@@ -24,13 +24,13 @@ const tex_html = mathjax.document('', {InputJax: tex, OutputJax: svg});
 const mathml_html = mathjax.document('', {InputJax: mathml, OutputJax: svg});
 
 function updateCSS(nodeID: string, text: string) {
-	let styleNode = document.getElementById(nodeID);
-	if (styleNode === null) {
-		styleNode = document.createElement('style');
-		styleNode.setAttribute('id', nodeID);
-		document.head.appendChild(styleNode);
-	}
-	styleNode.innerHTML = text;
+  let styleNode = document.getElementById(nodeID);
+  if (styleNode === null) {
+    styleNode = document.createElement('style');
+    styleNode.setAttribute('id', nodeID);
+    document.head.appendChild(styleNode);
+  }
+  styleNode.innerHTML = text;
 }
 
 /**
@@ -40,15 +40,15 @@ export function convert(srcSpec: SourceSpecification, node: HTMLElement, display
   const { src, lang } = srcSpec;
   let html = tex_html;
   if(lang == 'MathML') html = mathml_html;
-	const math: string = src.trim();
-	const metrics = svg.getMetricsFor(node, display);
-        const outerHTML =  adaptor.outerHTML(html.convert(math, {
+  const math: string = src.trim();
+  const metrics = svg.getMetricsFor(node, display);
+  const outerHTML =  adaptor.outerHTML(html.convert(math, {
             display,
-	... metrics
-        })); 
-	html.updateDocument();
-	updateCSS('MATHJAX-SVG-STYLESHEET', svg.cssStyles.cssText);
-	return outerHTML;
+        ... metrics
+  })); 
+  html.updateDocument();
+  updateCSS('MATHJAX-SVG-STYLESHEET', svg.cssStyles.cssText);
+  return outerHTML;
 }
 
 class CancelationException {}
@@ -57,8 +57,8 @@ export function convertPromise(srcSpec: SourceSpecification, node: HTMLElement, 
   const { src, lang } = srcSpec;
   let html = tex_html;
   if(lang == 'MathML') html = mathml_html;
-	const math: string = src.trim();
-	const metrics = svg.getMetricsFor(node, display);
+  const math: string = src.trim();
+  const metrics = svg.getMetricsFor(node, display);
   let canceled = false;
   const cancel = () => canceled = true;
   const res: Promise<string | void> = mathjax.handleRetriesFor(function () {
@@ -67,13 +67,13 @@ export function convertPromise(srcSpec: SourceSpecification, node: HTMLElement, 
     }
     const dom = html.convert(math, {
       display,
-	    ...metrics
+      ...metrics
     }); 
     return dom;
   }).then(dom => {
     // do stuff with dom
-	  html.updateDocument();
-	  updateCSS('MATHJAX-SVG-STYLESHEET', svg.cssStyles.cssText);
+    html.updateDocument();
+    updateCSS('MATHJAX-SVG-STYLESHEET', svg.cssStyles.cssText);
     return adaptor.outerHTML(dom);
   }).catch(err => {
     if (!(err instanceof CancelationException)) {

@@ -13,3 +13,8 @@ header {
   text-align: center;
   border-bottom: 1px solid rgba(0,0,0,0.125);
 }
+
+.credits {
+  text-align: center;
+  margin: 20px;
+}

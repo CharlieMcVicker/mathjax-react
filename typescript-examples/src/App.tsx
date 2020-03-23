@@ -12,6 +12,12 @@ export default class App extends React.Component {
         <div className="exampleList">
           { examples }
         </div>
+        <div className="credits">
+          <span>Copyright (c) 2020 Charles McVicker</span>
+          <br/>
+          <br/>
+          <span>Special thanks to Davide Cervone</span>
+        </div>
       </div>
     );
   }

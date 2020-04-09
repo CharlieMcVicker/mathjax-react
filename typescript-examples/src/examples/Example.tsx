@@ -16,7 +16,7 @@ export default class Example extends React.Component<Props, State> {
     absSrc: '' // Loaded immediately from props, below
   }
   static getDerivedStateFromProps(props: Props, state: State): State {
-    const absSrc = 'https://github.com/charliemcvicker/react-mathjax/blob/master/typescript-examples/src/'+props.relSrc;
+    const absSrc = 'https://github.com/charliemcvicker/mathjax-react/blob/master/typescript-examples/src/'+props.relSrc;
     return {
       absSrc
     };

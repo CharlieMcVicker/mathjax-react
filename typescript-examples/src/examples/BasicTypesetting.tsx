@@ -1,5 +1,5 @@
 import React from 'react';
-import { MathComponent } from 'react-mathjax';
+import { MathComponent } from 'mathjax-react';
 
 import Example from './Example';
 

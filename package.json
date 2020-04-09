@@ -1,6 +1,6 @@
 {
   "name": "mathjax-react",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "React Component Library for MathJax",
   "author": "charliemcvicker",
   "license": "MIT",
@@ -22,7 +22,7 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
-    "mathjax-full": "3.0.0",
+    "mathjax-full": "^3.0.4",
     "prop-types": "^15.5.4",
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0"

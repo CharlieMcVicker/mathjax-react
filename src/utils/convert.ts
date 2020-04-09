@@ -99,7 +99,6 @@ export function convertPromise(srcSpec: SourceSpecification, node: HTMLElement, 
     html.updateDocument();
     updateCSS('MATHJAX-SVG-STYLESHEET', svg.cssStyles.cssText);
     let err = adaptor.getAttribute(dom, 'data-mjx-error');
-    console.log('Error:', err)
     if (err){
       throw err;
     }

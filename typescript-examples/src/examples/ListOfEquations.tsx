@@ -10,7 +10,9 @@ export default class ListOfEquations extends React.Component {
     relSrc: "examples/ListOfEquations.tsx"
   };
   render(){
+    // TeX equations using JavaScript template literals
     const equations = [String.raw`ax^2+bx+c=0`, String.raw`x=\frac{-b\pm \sqrt{b^2-4ac}}{2a}`, String.raw`(x-h)^2+k=0`];
+    // Make a MathComponent for each equation
     const typesetEquations = equations.map((e, i) => <MathComponent tex={e} key={i} />);
     return (
       <Example {...ListOfEquations.exampleConfig}>

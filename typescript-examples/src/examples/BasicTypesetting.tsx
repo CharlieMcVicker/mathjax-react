@@ -10,6 +10,7 @@ export default class BasicTypesetting extends React.Component {
     relSrc: "examples/BasicTypesetting.tsx"
   };
   render(){
+    // our tex equation, using String.raw so we don't have to escape backslashes
     const example = String.raw`\int_{-\infty}^{\infty}e^{-x^2}\ dx`;
     return (
       <Example {...BasicTypesetting.exampleConfig}>

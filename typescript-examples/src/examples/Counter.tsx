@@ -16,17 +16,19 @@ export default class Counter extends React.Component<{}, State> {
   constructor(props: any) {
     super(props);
     this.state = {
-      counter: 0
+      counter: 0 // start counter at 0
     }
   }
   increment() {
     this.setState({
-      counter: this.state.counter + 1
+      counter: this.state.counter + 1 // increment the count and rerender
     });
   }
   render(){
-    const { counter } = this.state;
+    const { counter } = this.state; // get counter value for this render
+    // TeX equations using JavaScript template literals
     const equations = [`x=${counter}`, `x^2=${counter*counter}`];
+    // Make a MathComponent for each equation
     const typesetEquations = equations.map((e, i) => <MathComponent tex={e} key={i} />);
     return (
       <Example {...Counter.exampleConfig}>

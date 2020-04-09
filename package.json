@@ -1,10 +1,10 @@
 {
-  "name": "react-mathjax",
+  "name": "mathjax-react",
   "version": "1.0.0",
   "description": "React Component Library for MathJax",
   "author": "charliemcvicker",
   "license": "MIT",
-  "repository": "charliemcvicker/react-mathjax",
+  "repository": "charliemcvicker/mathjax-react",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",

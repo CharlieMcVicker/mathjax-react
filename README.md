@@ -1,13 +1,13 @@
-# react-mathjax
+# mathjax-react
 
 > React Component Library for MathJax
 
-<!--[![NPM](https://img.shields.io/npm/v/react-mathjax.svg)](https://www.npmjs.com/package/react-mathjax) -->
+<!--[![NPM](https://img.shields.io/npm/v/mathjax-react.svg)](https://www.npmjs.com/package/mathjax-react) -->
 ## Install
 
-Install the react-mathjax package:
+Install the mathjax-react package:
 ```bash
-npm install --save react-mathjax
+npm install --save mathjax-react
 ```
 Install MathJax-full as a sibling dependency. This lets your bundler shake the mathjax-full tree and reduce bundle size.
 ```bash
@@ -15,17 +15,17 @@ npm install --save mathjax-full
 ```
 Or, use yarn:
 ```bash
-yarn add react-mathjax
+yarn add mathjax-react
 yarn add mathjax-full
 ```
 ## Usage
 
-Take a look at the [typescript-examples](./typescript-examples) on our [GitHub Pages](https://charliemcvicker.github.io/react-mathjax/)
+Take a look at the [typescript-examples](./typescript-examples) on our [GitHub Pages](https://charliemcvicker.github.io/mathjax-react/)
 
 ```tsx
 import * as React from 'react'
 
-import { MathComponent } from 'react-mathjax'
+import { MathComponent } from 'mathjax-react'
 
 class Example extends React.Component {
   render () {
@@ -62,7 +62,7 @@ yarn link
 Run install and npm link in the `typescript-examples` directory to connect the library to the examples.
 ```bash
 cd typescript-examples/
-yarn link react-mathjax
+yarn link mathjax-react
 yarn
 ```
 ### Usage
@@ -82,7 +82,7 @@ npx rollup -w -c
 ### src/
 Library Source
 ### typescript-examples
-Examples using `react-mathjax` and `TypeScript`.
+Examples using `mathjax-react` and `TypeScript`.
 
 ## License
 

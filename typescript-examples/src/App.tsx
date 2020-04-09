@@ -7,7 +7,7 @@ export default class App extends React.Component {
     return (
       <div className="container">
         <header className="App-header">
-          <h1>Examples for react-mathjax</h1>
+          <h1>Examples for mathjax-react</h1>
         </header>
         <div className="exampleList">
           { examples }

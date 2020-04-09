@@ -76,7 +76,7 @@ export function convert(srcSpec: SourceSpecification, node: HTMLElement, display
 
 class CancelationException {}
 
-export function convertPromise(srcSpec: SourceSpecification, node: HTMLElement, display: boolean): { promise: Promise<string>, cancel: () => void } {
+export function convertPromise(srcSpec: SourceSpecification, node: HTMLElement, display: boolean, settings: any): { promise: Promise<string>, cancel: () => void } {
   const { src, lang } = srcSpec;
   if (!node) throw new Error();
   let html = tex_html;
@@ -91,6 +91,7 @@ export function convertPromise(srcSpec: SourceSpecification, node: HTMLElement, 
     }
     const dom = html.convert(math, {
       display,
+      ...settings
       // ...metrics
     }); 
     return dom;

@@ -18,7 +18,8 @@ type SourceProps = XOR<MathMLProps, TeXProps>;
 const defaultProps = {
   display: true,
   onError: null as (((error: string) => void) | null),
-  onSuccess: null as ((() => void) | null)
+  onSuccess: null as ((() => void) | null),
+  settings: {} as any
 };
 
 type DefaultProps = typeof defaultProps;
@@ -86,7 +87,8 @@ export class MathComponent extends React.Component<MathComponentProps, State> {
       const { promise, cancel } = convertPromise(
         src,
         node,
-        this.props.display!);
+        this.props.display!,
+        this.props.settings!);
       let renderPromise = promise.then(htmlStr => {
           // check if promise is correct (ie. most recent)
           if (renderPromise == this.state.renderPromise) {

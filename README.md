@@ -2,7 +2,9 @@
 
 > React Component Library for MathJax
 
-<!--[![NPM](https://img.shields.io/npm/v/mathjax-react.svg)](https://www.npmjs.com/package/mathjax-react) -->
+[![NPM](https://img.shields.io/npm/v/mathjax-react.svg)](https://www.npmjs.com/package/mathjax-react)
+
+For a lightweight, build-your-own alternative, check out this [gist](https://gist.github.com/GiacoCorsiglia/1619828473f4b34d3d914a16fcbf10f3).
 ## Install
 
 Install the mathjax-react package:

@@ -2,6 +2,7 @@
   "name": "mathjax-react",
   "version": "1.0.2",
   "description": "React Component Library for MathJax",
+  "keywords": ["mathjax", "math", "latex", "tex", "browser", "svg", "mathml", "react", "mathjax-v3"],
   "author": "charliemcvicker",
   "license": "MIT",
   "repository": "charliemcvicker/mathjax-react",

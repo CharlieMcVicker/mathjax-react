@@ -1,1 +1,1 @@
-export { convert, SourceSpecification } from './convert';
+export { convert, typesetNodePromise, SourceSpecification } from './convert';

@@ -4,6 +4,12 @@
   "description": "React Component Library for MathJax",
   "author": "charliemcvicker",
   "license": "MIT",
+  "keywords": [
+    "mathjax",
+    "react",
+    "mathjax-v3",
+    "reactjs"
+  ],
   "repository": "charliemcvicker/mathjax-react",
   "main": "dist/index.js",
   "module": "dist/index.es.js",

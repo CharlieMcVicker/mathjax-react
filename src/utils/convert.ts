@@ -56,25 +56,21 @@ function updateCSS(nodeID: string, text: string) {
   styleNode.innerHTML = text;
 }
 
-/**
- * Does a single convert call to MathJax. Tex from inputText is converted and options are the MathJax options
- */
-export function convert(srcSpec: SourceSpecification, node: HTMLElement, display: boolean): string {
-  const { src, lang } = srcSpec;
-  let html = tex_html;
-  if(lang == 'MathML') html = mathml_html;
-  const math: string = src.trim();
-  const metrics = svg.getMetricsFor(node, display);
-  const outerHTML =  adaptor.outerHTML(html.convert(math, {
-            display,
-        ... metrics
-  })); 
-  html.updateDocument();
-  updateCSS('MATHJAX-SVG-STYLESHEET', svg.cssStyles.cssText);
-  return outerHTML;
-}
-
 class CancelationException {}
+
+export function typesetNode(node: HTMLElement) : string {
+  // let res = tex_html.clear().reset().findMath({ elements: [node] }).compile().getMetrics().typeset();
+  let doc = mathjax.document(node, {
+    InputJax: tex,
+    OutputJax: svg,
+    renderActions: {
+      markErrors,
+    }
+  }).clear().findMath().compile().getMetrics().typeset().updateDocument();
+  console.log(doc);
+  let innerHTML = node.innerHTML;
+  return innerHTML;
+}
 
 export function convertPromise(srcSpec: SourceSpecification, node: HTMLElement, display: boolean, settings: any): { promise: Promise<string>, cancel: () => void } {
   const { src, lang } = srcSpec;
@@ -82,7 +78,7 @@ export function convertPromise(srcSpec: SourceSpecification, node: HTMLElement, 
   let html = tex_html;
   if(lang == 'MathML') html = mathml_html;
   const math: string = src.trim();
-  // const metrics = svg.getMetricsFor(node, display);
+  const metrics = svg.getMetricsFor(node, display);
   let canceled = false;
   const cancel = () => canceled = true;
   const res: Promise<string | void> = mathjax.handleRetriesFor(function () {
@@ -91,8 +87,8 @@ export function convertPromise(srcSpec: SourceSpecification, node: HTMLElement, 
     }
     const dom = html.convert(math, {
       display,
-      ...settings
-      // ...metrics
+      ...settings,
+      ...metrics
     }); 
     return dom;
   }).then(dom => {

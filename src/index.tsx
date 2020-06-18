@@ -1,1 +1,1 @@
-export { MathComponent } from './components';
+export { MathComponent, MathWrapper } from './components';

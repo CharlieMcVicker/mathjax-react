@@ -50,7 +50,7 @@
     "gh-pages": "^1.2.0",
     "js-yaml": "^3.13.1",
     "mem": "^4.0.0",
-    "minimist": "^0.2.1",
+    "minimist": "^1.2.6",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts-ts": "^4.0.8",

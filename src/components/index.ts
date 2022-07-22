@@ -1,1 +1,5 @@
-export { MathComponent } from './MathComponent';
+export {
+  MathComponent,
+  SourceProps,
+  MathComponentProps,
+} from "./MathComponent";

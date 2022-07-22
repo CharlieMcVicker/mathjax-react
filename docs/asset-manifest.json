@@ -1,22 +1,13 @@
 {
   "files": {
-    "main.css": "/mathjax-react/static/css/main.2e21f991.chunk.css",
-    "main.js": "/mathjax-react/static/js/main.09387ea3.chunk.js",
-    "main.js.map": "/mathjax-react/static/js/main.09387ea3.chunk.js.map",
-    "runtime-main.js": "/mathjax-react/static/js/runtime-main.a90c9f5c.js",
-    "runtime-main.js.map": "/mathjax-react/static/js/runtime-main.a90c9f5c.js.map",
-    "static/js/2.8f206fe8.chunk.js": "/mathjax-react/static/js/2.8f206fe8.chunk.js",
-    "static/js/2.8f206fe8.chunk.js.map": "/mathjax-react/static/js/2.8f206fe8.chunk.js.map",
+    "main.css": "/mathjax-react/static/css/main.3755256a.css",
+    "main.js": "/mathjax-react/static/js/main.c35300ed.js",
     "index.html": "/mathjax-react/index.html",
-    "precache-manifest.df230355d8fd4ca08e6cf58e069a2cc3.js": "/mathjax-react/precache-manifest.df230355d8fd4ca08e6cf58e069a2cc3.js",
-    "service-worker.js": "/mathjax-react/service-worker.js",
-    "static/css/main.2e21f991.chunk.css.map": "/mathjax-react/static/css/main.2e21f991.chunk.css.map",
-    "static/js/2.8f206fe8.chunk.js.LICENSE": "/mathjax-react/static/js/2.8f206fe8.chunk.js.LICENSE"
+    "main.3755256a.css.map": "/mathjax-react/static/css/main.3755256a.css.map",
+    "main.c35300ed.js.map": "/mathjax-react/static/js/main.c35300ed.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.a90c9f5c.js",
-    "static/js/2.8f206fe8.chunk.js",
-    "static/css/main.2e21f991.chunk.css",
-    "static/js/main.09387ea3.chunk.js"
+    "static/css/main.3755256a.css",
+    "static/js/main.c35300ed.js"
   ]
 }

@@ -35,16 +35,16 @@
   "peerDependencies": {
     "mathjax-full": "^3.0.4",
     "prop-types": "^15.5.4",
-    "react": "^17.0.0|^18.0.0",
-    "react-dom": "^17.0.0|^18.0.0"
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
     "@rollup/plugin-babel": "^5.3.1",
     "@svgr/rollup": "^6.2.1",
     "@types/jest": "^23.1.5",
     "@types/node": "^18.0.6",
-    "@types/react": "^17.0.0|^18.0.0",
-    "@types/react-dom": "^17.0.0|^18.0.0",
+    "@types/react": "^17.0.0 || ^18.0.0",
+    "@types/react-dom": "^17.0.0 || ^18.0.0",
     "acorn": "^7.1.1",
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",

@@ -1,5 +1,7 @@
 # mathjax-react
 
+___This project is no longer actively maintained___
+
 > React Component Library for MathJax
 
 [![NPM](https://img.shields.io/npm/v/mathjax-react.svg)](https://www.npmjs.com/package/mathjax-react)
